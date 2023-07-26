@@ -1,12 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function Form({ onAddItems }) {
 	const [description, setDescription] = useState("");
 	const [quantity, setQuantity] = useState(1);
 
 	const handleSubmit = (e) => {
-		// console.log(e)
 		e.preventDefault();
 
 		if (!description) return;
@@ -15,9 +13,8 @@ function Form({ onAddItems }) {
 			id: Date.now(),
 			quantity,
 			description,
-			pasked: false,
+			packed: false,
 		};
-
 		console.log(newItem);
 		onAddItems(newItem);
 
@@ -26,34 +23,32 @@ function Form({ onAddItems }) {
 	};
 
 	const handleChange = (e) => {
-		// console.log(e.target.value)
 		setDescription(e.target.value);
 	};
 
 	const handleQuantityChange = (e) => {
-		// console.log(e.target.value)
 		setQuantity(Number(e.target.value));
 	};
 
 	return (
 		<form className="add-form" onSubmit={handleSubmit}>
-			<h3>What do you need for your 😍 trip?</h3>
-			<select name="" id="" value={quantity} onChange={handleQuantityChange}>
+			<h3>What do you need for your trip? 😍🎉</h3>
+			<select value={quantity} onChange={handleQuantityChange}>
 				{Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
 					<option value={num} key={num}>
-						{num}
+						{" "}
+						{num}{" "}
 					</option>
 				))}
 			</select>
 			<input
-				value={description}
 				type="text"
-				placeholder="item..."
+				placeholder="Item..."
+				value={description}
 				onChange={handleChange}
 			/>
 			<button>Add</button>
 		</form>
 	);
 }
-
 export default Form;
